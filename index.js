@@ -1,7 +1,10 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const mongoose = require('mongoose');
+const cors = require('cors');
 const admin = require("firebase-admin");
+require('dotenv').config();
 
 const app = express();
 app.use(cors());
