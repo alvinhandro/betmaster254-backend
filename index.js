@@ -13,8 +13,7 @@ app.use(express.json());
 
 const serviceAccount = {
   type: "service_account",
-  project_id: process.env.FIREBASE_PROJECT_ID,
-  jwt_secret_key: "some_key_id",
+  
   jwt_secret: process.env.JWT_SECRET.replace(/\\n/g, '\n'),
   mongo_uri: process.env.MONGO_URI,
   client_id: "some_client_id",
