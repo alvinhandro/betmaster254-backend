@@ -28,6 +28,7 @@ const db = admin.firestore();
 
 app.get("/", (req, res) => res.send("BetMaster 254 API Running"));
 
+//Routes
 app.use("/api/matches", require("./routes/matches"));
 app.use("/api/wallet", require("./routes/wallet"));
 app.use("/api/bets", require("./routes/bets"));
