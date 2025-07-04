@@ -10,12 +10,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
 const serviceAccount = {
   type: "service_account",
   project_id: process.env.FIREBASE_PROJECT_ID,
-  private_key_id: "some_key_id",
-  private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-  client_email: process.env.FIREBASE_CLIENT_EMAIL,
+  jwt_secret_key: "some_key_id",
+  jwt_secret: process.env.JWT_SECRET.replace(/\\n/g, '\n'),
+  mongo_uri: process.env.MONGO_URI,
   client_id: "some_client_id",
   auth_uri: "https://accounts.google.com/o/oauth2/auth",
   token_uri: "https://oauth2.googleapis.com/token",
@@ -34,4 +35,9 @@ app.use("/api/wallet", require("./routes/wallet"));
 app.use("/api/bets", require("./routes/bets"));
 
 const PORT = process.env.PORT || 5000;
+
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => app.listen(PORT, () => console.log(`Server running on port ${PORT}`)))
+  .catch((err) => console.error(err));
+
 app.listen(PORT, () => console.log(`API running on port ${PORT}`));
